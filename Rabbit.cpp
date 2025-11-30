@@ -59,8 +59,8 @@ void Rabbit::Draw(sf::RenderWindow* window, sf::Texture& texture, unsigned int s
 
 	sf::Sprite rabbit(texture);
 	rabbit.setScale(sf::Vector2f({
-		(fieldSize / rabbit.getLocalBounds().size.x) / 3,
-		(fieldSize / rabbit.getLocalBounds().size.y) / 3
+		(fieldSize / rabbit.getLocalBounds().size.x) / 2.8f,
+		(fieldSize / rabbit.getLocalBounds().size.y) / 2.8f
 		}));
 
 	rabbit.setPosition(position);

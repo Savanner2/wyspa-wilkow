@@ -66,8 +66,8 @@ void Wolf::Draw(sf::RenderWindow* window, sf::Texture& texture, unsigned int scr
 
 	sf::Sprite wolf(texture);
 	wolf.setScale(sf::Vector2f({
-		(fieldSize / wolf.getLocalBounds().size.x) / 3,
-		(fieldSize / wolf.getLocalBounds().size.y) / 3
+		(fieldSize / wolf.getLocalBounds().size.x) / 2.8f,
+		(fieldSize / wolf.getLocalBounds().size.y) / 2.8f
 		}));
 
 	wolf.setPosition(position);
