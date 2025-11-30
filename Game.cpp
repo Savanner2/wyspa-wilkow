@@ -205,11 +205,10 @@ sf::Text Game::boardEditText() const
     sf::String rabbitStr = characterSelected == 1 ? sf::String(U"\t") + arrow + U"RABBIT\n" : sf::String(U"RABBIT\n");
     sf::String wolfStr = characterSelected == 2 ? sf::String(U"\t") + arrow + U"WOLF\n"   : sf::String(U"WOLF\n");
     sf::String wolfessStr = characterSelected == 3 ? sf::String(U"\t") + arrow + U"WOLFESS\n" : sf::String(U"WOLFESS\n");
-    sf::String hedgeStr = characterSelected == 4 ? sf::String(U"\t") + arrow + U"HEDGE\n" : sf::String(U"HEDGE\n");
-    sf::String clearStr = characterSelected == 0 ? sf::String(U"\t") + arrow + U"CLEAR\n" : sf::String(U"CLEAR\n");
+    sf::String hedgeStr = characterSelected == 0 ? sf::String(U"\t") + arrow + U"HEDGE\n" : sf::String(U"HEDGE\n");
 
     sf::Text boardEditText(fontGoogleSans);
-    boardEditText.setString(sf::String(U"Add characters:\n") + rabbitStr + wolfStr + wolfessStr + hedgeStr + clearStr + sf::String(U"\n\nChange with UP/DOWN\nClick on the board to add/clear\nselected character"));
+    boardEditText.setString(sf::String(U"Add characters:\n") + rabbitStr + wolfStr + wolfessStr + hedgeStr + sf::String(U"\nChange with UP/DOWN\n\nLeft click on the board to add\nselected character.\nRight click to clear a field."));
     boardEditText.setCharacterSize(20);
     boardEditText.setFillColor(sf::Color::Blue);
     boardEditText.setPosition({ (float)screenSize + 10, 350 });
@@ -317,25 +316,19 @@ void Game::handleEvents(sf::RenderWindow* window, const std::optional<sf::Event>
         case sf::Keyboard::Key::Space: paused = !paused; break;
         case sf::Keyboard::Key::Right: frameDelay += 0.25f; break;
         case sf::Keyboard::Key::Left:  if (frameDelay > 0.25f) frameDelay -= 0.25f; break;
-        case sf::Keyboard::Key::Down:  characterSelected = (characterSelected + 1) % 5; break;
-        case sf::Keyboard::Key::Up:    characterSelected = (characterSelected + 4) % 5; break;
+        case sf::Keyboard::Key::Down:  characterSelected = (characterSelected + 1) % 4; break;
+        case sf::Keyboard::Key::Up:    characterSelected = (characterSelected + 3) % 4; break;
         default: break;
         }
     }
 
 	// check for mouse clicks
     if (event->getIf<sf::Event::MouseButtonPressed>()) {
+		sf::Vector2i position(sf::Mouse::getPosition(*window));
+		Position fieldPos = getFieldFromMousePosition(position);
         if (paused && event->getIf<sf::Event::MouseButtonPressed>()->button == sf::Mouse::Button::Left) {
-		    sf::Vector2i position(sf::Mouse::getPosition(*window));
-
-			// add characters or clear field
-		    Position fieldPos = getFieldFromMousePosition(position);
+			// add characters
             switch(characterSelected) {
-                case 0: // clear
-                    while (GameCharacter* character = board.getCharacterAt(fieldPos)) {
-                        board.removeCharacter(character);
-                    }
-                    break;
                 case 1: // rabbit
                     board.addCharacter(fieldPos, CharacterType::RABBIT);
                     break;
@@ -345,7 +338,7 @@ void Game::handleEvents(sf::RenderWindow* window, const std::optional<sf::Event>
                 case 3: // wolfess
                     board.addCharacter(fieldPos, CharacterType::WOLFESS);
                     break;
-                case 4: // hedge
+                case 0: // hedge
                     board.addCharacter(fieldPos, CharacterType::HEDGE);
                     break;
 			}
@@ -353,6 +346,11 @@ void Game::handleEvents(sf::RenderWindow* window, const std::optional<sf::Event>
             // clear all
             if (clearAllButton.getGlobalBounds().contains(window->mapPixelToCoords(position))) {
                 board.gameCharacterList.clear();
+            }
+        }
+        if (paused && event->getIf<sf::Event::MouseButtonPressed>()->button == sf::Mouse::Button::Right) {
+            while (GameCharacter* character = board.getCharacterAt(fieldPos)) {
+                board.removeCharacter(character);
             }
         }
     }
