@@ -20,6 +20,9 @@ public:
 	// fieldNumber getter
 	int getFieldNumber() const;
 
+	// get total character count of specific type
+	int getCharacterCount(CharacterType type) const;
+
 	// check if position is out of bounds
 	bool checkOutOfBounds(Position pos) const;
 

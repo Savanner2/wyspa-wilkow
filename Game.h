@@ -44,8 +44,11 @@ public:
 	void drawControls(sf::RenderWindow* window);
 	void drawCharacters(sf::RenderWindow* window) const;
 
+
 	// create and return speed text
 	sf::Text speedText() const;
+	// create and return speed text
+	sf::Text statusText() const;
 	// create and return board edit text
 	sf::Text boardEditText() const;
 	// create pause text

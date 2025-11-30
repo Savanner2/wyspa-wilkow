@@ -20,6 +20,16 @@ int Board::getFieldNumber() const
 	return fieldNumber;
 }
 
+int Board::getCharacterCount(CharacterType type) const
+{
+	int count = 0;
+	for (const GameCharacter* character : gameCharacterList) {
+		if (character->type == type)
+			count += character->slots;
+	}
+	return count;
+}
+
 bool Board::checkOutOfBounds(Position pos) const
 {
 	return pos.x < 1 || pos.x > fieldNumber || pos.y < 1 || pos.y > fieldNumber;

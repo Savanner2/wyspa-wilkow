@@ -89,19 +89,22 @@ void Game::drawControls(sf::RenderWindow* window)
     if (paused) {
         window->draw(pauseText());
 	}
-    window->draw(speedText());
+	window->draw(speedText());
+    window->draw(statusText());
 	window->draw(boardEditText());
 
-	clearAllButton.setFillColor(sf::Color(200, 200, 200, 200));
-    clearAllButton.setPosition({ (float)screenSize + 100, (float)(screenSize * 0.5) });
+
+    // clear all button
     clearAllButton.setSize({ 200.f, 50.f });
+	clearAllButton.setFillColor(sf::Color(200, 200, 200, 200));
+    clearAllButton.setPosition({ (float)screenSize + 100, (float)(650) });
 	window->draw(clearAllButton);
 
 	sf::Text clearAllText(fontGoogleSans);
 	clearAllText.setString("Clear All");
 	clearAllText.setCharacterSize(28);
 	clearAllText.setFillColor(sf::Color::Black);
-	clearAllText.setPosition({ (float)screenSize + 125, (float)(screenSize * 0.5 + 5) });
+	clearAllText.setPosition({ (float)screenSize + 125, (float)(650 + 5) });
 	window->draw(clearAllText);
 
 }
@@ -172,11 +175,27 @@ sf::Text Game::speedText() const
     std::stringstream ss;
     ss << std::fixed << std::setprecision(2) << (60.f / speed);
 
-    speedText.setString("Speed: " + ss.str() + " ticks/sec\nPress LEFT/RIGHT to change speed\nPress SPACE to pause/resume");
-    speedText.setCharacterSize(20);
-    speedText.setFillColor(sf::Color::Red);
-    speedText.setPosition({ (float)screenSize + 10, 10.f });
-	return speedText;
+    speedText.setString("Speed: " + ss.str() + " ticks/sec\n\nPress LEFT/RIGHT to change speed\nPress SPACE to pause/resume\n\n");
+	speedText.setCharacterSize(20);
+	speedText.setFillColor(sf::Color::Red);
+	speedText.setPosition({ (float)screenSize + 10, 10.f });
+
+    return speedText;
+}
+
+sf::Text Game::statusText() const
+{
+    sf::Text statusText(fontGoogleSans);
+
+    statusText.setString("Characters:\nRABBIT: " + std::to_string(board.getCharacterCount(CharacterType::RABBIT)) + "\n" +
+		"WOLF: " + std::to_string(board.getCharacterCount(CharacterType::WOLF)) + "\n" +
+		"WOLFESS: " + std::to_string(board.getCharacterCount(CharacterType::WOLFESS)) + "\n" +
+		"HEDGE: " + std::to_string(board.getCharacterCount(CharacterType::HEDGE)) + "\n"
+            );
+    statusText.setCharacterSize(20);
+    statusText.setFillColor(sf::Color::Green);
+    statusText.setPosition({ (float)screenSize + 10, 150.f });
+	return statusText;
 }
 
 sf::Text Game::boardEditText() const
@@ -192,8 +211,8 @@ sf::Text Game::boardEditText() const
     sf::Text boardEditText(fontGoogleSans);
     boardEditText.setString(sf::String(U"Add characters:\n") + rabbitStr + wolfStr + wolfessStr + hedgeStr + clearStr + sf::String(U"\n\nChange with UP/DOWN\nClick on the board to add/clear\nselected character"));
     boardEditText.setCharacterSize(20);
-    boardEditText.setFillColor(sf::Color::Green);
-    boardEditText.setPosition({ (float)screenSize + 10, 150 });
+    boardEditText.setFillColor(sf::Color::Blue);
+    boardEditText.setPosition({ (float)screenSize + 10, 350 });
     return boardEditText;
 }
 
