@@ -13,8 +13,8 @@ void Hedge::Draw(sf::RenderWindow* window, sf::Texture& texture, unsigned int sc
 	sf::Vector2f position;
 
 	position = {
-		((pos.x - 1) * fieldSize),// - fieldSize + fieldSize * (1.f / 10)),
-		((pos.y - 1) * fieldSize) // - (fieldSize / 2) - radius)
+		((pos.x - 1) * fieldSize),
+		((pos.y - 1) * fieldSize)
 	};
 
 	sf::Sprite hedge(texture);

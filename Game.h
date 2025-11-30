@@ -5,26 +5,27 @@
 
 class Game
 {
-	unsigned int boardSize;
-	sf::RectangleShape clearAllButton;
-	bool spacePrevState = false;
-	float lineThickness = 2.f;
-	sf::Font fontGoogleSans;
-	sf::Font fontEmoji;
+	const unsigned int boardSize;	// size of the board
+	const unsigned int screenSize;	// size of the board in pixels
+	float lineThickness = 2.f;	// thickness of grid lines
+	sf::Font fontGoogleSans;	// main font
+	sf::Font fontEmoji;			// emoji font
+	std::vector<uint8_t> fontGoogleSansBuffer;	// buffer for loading main font from resources
+	std::vector<uint8_t> fontEmojiBuffer;	// buffer for loading emoji font from resources
+	sf::RectangleShape clearAllButton; // clear all button
 
+	// load resource
 	static std::vector<uint8_t> loadResource(WORD resourceId, const wchar_t* resourceType);
-	std::vector<uint8_t> fontGoogleSansBuffer;
-	std::vector<uint8_t> fontEmojiBuffer;
 public:
-	Board board;
-	unsigned int screenSize;
-	float rabbitBreedChance = 0.2f;
-	float rabbitIdleChance = 1.f / 9;
+	Board board;	// main game board
+	const float rabbitBreedChance = 0.2f;		// 20% chance of rabbit breeding
+	const float rabbitIdleChance = 1.f / 9;		// 1/9 chance of rabbit idling
 
-	int speed = 60, tick = 0;
-	float frameDelay = 1.f;
-	bool paused = true;
-	int characterSelected = 1; // 1 - Rabbit, 2 - Wolf, 3 - Wolfess
+	int speed = 60;	// ticks per second
+	int tick = 0;	// current tick
+	float frameDelay = 1.f;	// frame delay ratio
+	bool paused = true;	// is the game paused
+	int characterSelected = 1; // 1 - Rabbit, 2 - Wolf, 3 - Wolfess, 0 - Hedge
 
 	sf::Texture backgroundTexture;
 	sf::Texture rabbitTexture;
@@ -37,11 +38,15 @@ public:
 
 
 	Game(unsigned int boardSize, unsigned int screenSize);
+	// load textures from resources
 	bool loadTextures();
+	// draw grid
 	void drawGrid(sf::RenderWindow* window, int screenSize, int fieldNumber) const;
+	// draw background
 	void drawBackground(sf::RenderWindow* window, int screenSize, int fieldNumber) const;
-	// draw controls
+	// draw controls and info
 	void drawControls(sf::RenderWindow* window);
+	// draw characters
 	void drawCharacters(sf::RenderWindow* window) const;
 
 
@@ -56,8 +61,7 @@ public:
 
 	// get field from mouse position
 	Position getFieldFromMousePosition(sf::Vector2i mousePos) const;
-
+	// handle input events
 	void handleEvents(sf::RenderWindow* window, const std::optional<sf::Event>* e);
-
 };
 

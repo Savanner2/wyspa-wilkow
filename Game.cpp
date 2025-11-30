@@ -18,9 +18,8 @@
 #define IDB_SKULL 107
 #define IDB_WOLF 108
 
-Game::Game(unsigned int boardSize, unsigned int screenSize) : board(boardSize) {
-	this->screenSize = screenSize;
-	this->boardSize = boardSize;
+Game::Game(unsigned int boardSize, unsigned int screenSize)
+    : board(boardSize), screenSize(screenSize), boardSize(boardSize) {
 
 	fontGoogleSansBuffer = loadResource(IDR_RCDATA1, MAKEINTRESOURCEW(RT_RCDATA));
     if (fontGoogleSansBuffer.empty()) {

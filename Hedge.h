@@ -7,7 +7,10 @@ class Hedge :
 {
     public:
     Hedge(Position pos);
+	// draw hedge
     void Draw(sf::RenderWindow* window, sf::Texture& texture, unsigned int screenSize, unsigned int fieldNumber, int p = 0) override;
-	static sf::Texture* GetTexture(class Game* game);
+	
+	// get hedge texture
+    static sf::Texture* GetTexture(class Game* game);
 };
 

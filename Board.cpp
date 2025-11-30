@@ -6,7 +6,7 @@
 #include "Rabbit.h"
 #include "Hedge.h"
 
-#include<vector>
+#include <vector>
 #include <iostream>
 #include <cstdlib>
 

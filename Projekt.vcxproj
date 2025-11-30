@@ -155,7 +155,6 @@
     <ClInclude Include="Hedge.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="Rabbit.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="resource1.h" />
     <ClInclude Include="Wolf.h" />
   </ItemGroup>

@@ -11,7 +11,7 @@ bool Animation::isFinished() const {
 }
 
 void Animation::update() {
-    lifetime--;
+	lifetime--;     // Decrease lifetime
     offsetY -= 1.f;  // Move up
     alpha -= 255 / (float)maxLifetime;   // Fade out
 }

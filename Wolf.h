@@ -10,8 +10,7 @@ public:
     double fat;
 	Wolf(Position pos);
 	Wolf(Position pos, CharacterType type);
-    void Move(int deltaX, int deltaY);
-    void Draw(sf::RenderWindow* window, sf::Texture& texture, unsigned int screenSize, unsigned int fieldNumber, int p = 0);
+    void Move(int deltaX, int deltaY) override;
 
     static sf::Texture* GetTexture(class Game* game);
 };
