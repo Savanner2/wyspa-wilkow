@@ -15,6 +15,7 @@ int main()
     srand(time(NULL));
     unsigned int boardSize;
     unsigned int screenSize = 900;
+    unsigned int step = 0;
 
     // select board size
 	std::cout << "Enter board size (suggested 10-20): ";
@@ -48,11 +49,11 @@ int main()
 
         // check if game should tick
         if (game.tick == 0 && !game.paused) {
-            std::cout << "\033[H\033[2J" << std::flush;
-			/*size_t initialCharacterCount = game.board.gameCharacterList.size();
-			for (int i = 0; i < initialCharacterCount; i++)
-            {
-                GameCharacter* character = game.board.gameCharacterList[i];*/
+			system("cls");
+            step++;
+			std::cout << "==========================" << std::endl;
+            std::cout << "Step: " << step << std::endl;
+            std::cout << "==========================\n" << std::endl;
 
             // loop through every character
             for(GameCharacter* character : game.board.gameCharacterList) {
@@ -119,7 +120,7 @@ int main()
                                 {
                                     deltaX = newDeltaX;
                                     deltaY = newDeltaY;
-									std::cout << "Wolf at (" << wolf->pos.x << ", " << wolf->pos.y << ") is moving towards rabbit at (" << rabbit->pos.x << ", " << rabbit->pos.y << ")" << std::endl;
+									//std::cout << "Wolf at (" << wolf->pos.x << ", " << wolf->pos.y << ") is moving towards rabbit at (" << rabbit->pos.x << ", " << rabbit->pos.y << ")" << std::endl;
                                 }
                             }
                         }
