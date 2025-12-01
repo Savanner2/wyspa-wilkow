@@ -10,14 +10,14 @@ międzygatunkowych, rozmnażania i śmierci.
 
 # Postacie
 
--   **Królik** -- króliki są ofiarami wilków, posiadają 20% szans na
+-   **Królik** &ndash; króliki są ofiarami wilków, posiadają 20% szans na
     rozmnożenie się co każdy krok symulacji, lecz nie potrzebują do tego
     partnera. Ich ruchy są całkowicie losowa, ponadto posiadają 11%
     szans, że nie ruszą się. Nie posiadają one mechanizmu głodu.\
     <div align="center">
         <img src="images/rabbit.png" alt="Królik" width="150"/>
     </div>
--   **Wilczyca** -- drapieżnik, poluje na króliki - w każdym kroku
+-   **Wilczyca** &ndash; drapieżnik, poluje na króliki - w każdym kroku
     symulacji porusza się w kierunku najbliższego królika, chyba że na
     drodze znajduje się żywopłot lub na planszy nie ma żadnych
     królików - wtedy wykonuje losowy ruch. Wilczyca może rozmnożyć się
@@ -29,7 +29,7 @@ międzygatunkowych, rozmnażania i śmierci.
         <img src="images/wolfess.png" alt="Wilczyca" width="150"/>
     </div>
 
--   **Wilk** -- działa tak samo jak wilczyca, ale jeśli posiada
+-   **Wilk** &ndash; działa tak samo jak wilczyca, ale jeśli posiada
     przynajmniej 1.0 jednostek tłuszczu to porusza się w kierunku
     najbliższej wilczycy. Porusza się według priorytetu: wilczyca
     (jeżeli tłuszcz \>= 1.0) $\to$ króliki $\to$ losowy ruch.\
@@ -38,7 +38,7 @@ międzygatunkowych, rozmnażania i śmierci.
         <img src="images/wolf.png" alt="Wilk" width="150"/>
     </div>
 
--   **Żywopłot** -- statyczna postać, która blokuje ruch wilków i
+-   **Żywopłot** &ndash; statyczna postać, która blokuje ruch wilków i
     wilczyc. Króliki mogą przez niego przechodzić bez przeszkód.\
 
     <div align="center">
@@ -87,100 +87,100 @@ Klasa zarządzająca główną pętlą gry, obsługująca zdarzenia i renderują
 planszę oraz postacie.\
 Publiczne pola:
 
--   `const unsigned int boardSize` -- rozmiar planszy (NxN).
+-   `const unsigned int boardSize` &ndash; rozmiar planszy (NxN).
 
--   `const unsigned int screenSize` -- rozmiar planszy w pikselach.
+-   `const unsigned int screenSize` &ndash; rozmiar planszy w pikselach.
 
--   `float lineThickness` -- grubość linii siatki planszy.
+-   `float lineThickness` &ndash; grubość linii siatki planszy.
 
--   `sf::Font fontGoogleSans` -- główna czcionka używana w interfejsie.
+-   `sf::Font fontGoogleSans` &ndash; główna czcionka używana w interfejsie.
 
--   `sf::Font fontEmoji` -- czcionka używana do wyświetlania emoji.
+-   `sf::Font fontEmoji` &ndash; czcionka używana do wyświetlania emoji.
 
--   `std::vector<uint8_t> fontGoogleSansBuffer` -- bufor głównej
+-   `std::vector<uint8_t> fontGoogleSansBuffer` &ndash; bufor głównej
     czcionki.
 
--   `std::vector<uint8_t> fontEmojiBuffer` -- bufor czcionki emoji.
+-   `std::vector<uint8_t> fontEmojiBuffer` &ndash; bufor czcionki emoji.
 
--   `sf::RectangleShape clearAllButton` -- przycisk do czyszczenia
+-   `sf::RectangleShape clearAllButton` &ndash; przycisk do czyszczenia
     planszy.
 
 Publiczne metody:
 
 -   `static std::vector<uint8_t> loadResource(WORD resourceId, const wchar_t* resourceType)`
-    -- metoda ładująca zasoby (obrazy i czcionki). `resourceId` to
+    &ndash; metoda ładująca zasoby (obrazy i czcionki). `resourceId` to
     identyfikator zasobu, `resourceType` to kategoria zasobu. Zwraca
     wektor bajtów reprezentujących zasób.
 
 Publiczne pola:
 
--   `Board board` -- obiekt reprezentujący planszę gry.
+-   `Board board` &ndash; obiekt reprezentujący planszę gry.
 
--   `const float rabbitBreedChance` -- szansa rozmnożenia się królika.
+-   `const float rabbitBreedChance` &ndash; szansa rozmnożenia się królika.
 
--   `const float rabbitIdleChance` -- szansa, że królik się nie ruszy.
+-   `const float rabbitIdleChance` &ndash; szansa, że królik się nie ruszy.
 
--   `int speed` -- zmienna kontrolująca prędkość symulacji.
+-   `int speed` &ndash; zmienna kontrolująca prędkość symulacji.
 
--   `int tick` -- zmienna kontrolujące kiedy następuje następny krok
+-   `int tick` &ndash; zmienna kontrolujące kiedy następuje następny krok
     symulacji.
 
--   `float frameDelay` -- odwrócony stosunek pola `speed` do liczby
+-   `float frameDelay` &ndash; odwrócony stosunek pola `speed` do liczby
     klatek na sekundę.
 
--   `bool paused` -- zmienna określająca, czy symulacja jest zatrzymana.
+-   `bool paused` &ndash; zmienna określająca, czy symulacja jest zatrzymana.
 
--   `int characterSelected` -- indeks wybranej postaci do umieszczenia
+-   `int characterSelected` &ndash; indeks wybranej postaci do umieszczenia
     na planszy.
 
 -   `sf::Texture backgroundTexture, sf::Texture rabbitTexture, sf::Texture wolfTexture, sf::Texture eatTexture, sf::Texture deathTexture,sf::Texture rabbitBreedTexture, sf::Texture wolfBreedTexture, sf::Texture hedgeTexture`
-    -- tekstury używane do renderowania planszy, postaci oraz animacji.
+    &ndash; tekstury używane do renderowania planszy, postaci oraz animacji.
 
 Publiczne metody:
 
--   `Game(unsigned int boardSize, unsigned int screenSize)` --
+-   `Game(unsigned int boardSize, unsigned int screenSize)` &ndash;
     konstruktor klasy Game, inicjalizujący planszę i ładujący zasoby.
     `boardSize` to rozmiar planszy (NxN), `screenSize` to rozmiar
     planszy w pikselach.
 
--   `bool loadTextures()` -- metoda ładująca tekstury z zasobów. Zwraca
+-   `bool loadTextures()` &ndash; metoda ładująca tekstury z zasobów. Zwraca
     true jeśli załadowano poprawnie, w przeciwnym razie false.
 
--   `void drawGrid(sf::RenderWindow* window)` -- metoda rysująca siatkę
+-   `void drawGrid(sf::RenderWindow* window)` &ndash; metoda rysująca siatkę
     planszy na podanym oknie SFML. `window` to wskaźnik na okno SFML.
 
--   `void drawBackground(sf::RenderWindow* window)` -- metoda rysująca
+-   `void drawBackground(sf::RenderWindow* window)` &ndash; metoda rysująca
     tło planszy na podanym oknie SFML. `window` to wskaźnik na okno
     SFML.
 
--   `void drawControls(sf::RenderWindow* window)` -- metoda rysująca
+-   `void drawControls(sf::RenderWindow* window)` &ndash; metoda rysująca
     elementy interfejsu użytkownika na podanym oknie SFML. `window` to
     wskaźnik na okno SFML.
 
--   `void drawCharacters(sf::RenderWindow* window)` -- metoda rysująca
+-   `void drawCharacters(sf::RenderWindow* window)` &ndash; metoda rysująca
     postacie na planszy w podanym oknie SFML. `window` to wskaźnik na
     okno SFML.
 
--   `sf::Text speedText()` -- metoda tworząca i zwracająca obiekt
+-   `sf::Text speedText()` &ndash; metoda tworząca i zwracająca obiekt
     `sf::Text` wyświetlający prędkość symulacji.
 
--   `sf::Text statusText()` -- metoda tworząca i zwracająca obiekt
+-   `sf::Text statusText()` &ndash; metoda tworząca i zwracająca obiekt
     `sf::Text` wyświetlający status symulacji (ilość postaci na
     planszy).
 
--   `sf::Text boardEditText()` -- metoda tworząca i zwracająca obiekt
+-   `sf::Text boardEditText()` &ndash; metoda tworząca i zwracająca obiekt
     `sf::Text` wyświetlający listę postać do umieszczenia na planszy.
 
--   `sf::Text pauseText()` -- metoda tworząca i zwracająca obiekt
+-   `sf::Text pauseText()` &ndash; metoda tworząca i zwracająca obiekt
     `sf::Text` wyświetlający ikonę pauzy, gdy symulacja jest zatrzymana.
 
--   `Position getFieldFromMousePosition(sf::Vector2i mousePos)` --
+-   `Position getFieldFromMousePosition(sf::Vector2i mousePos)` &ndash;
     metoda zwracająca pozycję planszy typu `Position` odpowiadającą
     podanym współrzędnym myszy. `mousePos` to współrzędne myszy w oknie
     SFML.
 
 -   `void handleEvents(sf::RenderWindow* window, const std::optional<sf::Event>* e)`
-    -- metoda obsługująca zdarzenia SFML, takie jak kliknięcia myszy i
+    &ndash; metoda obsługująca zdarzenia SFML, takie jak kliknięcia myszy i
     naciśnięcia klawiszy. `window` to wskaźnik na okno SFML, `e` to
     wskaźnik na zdarzenie SFML (z głównej pętli zbierającej eventy).
 
@@ -189,21 +189,21 @@ Publiczne metody:
 Klasa reprezentująca pozycję na planszy za pomocą współrzędnych x i y.\
 Publiczne pola:
 
--   `int x` -- współrzędna x pozycji na planszy.
+-   `int x` &ndash; współrzędna x pozycji na planszy.
 
--   `int y` -- współrzędna y pozycji na planszy.
+-   `int y` &ndash; współrzędna y pozycji na planszy.
 
 ## CharacterType
 
 Wyliczenie reprezentujące typy postaci w grze.
 
--   `RABBIT` -- królik.
+-   `RABBIT` &ndash; królik.
 
--   `WOLF` -- wilk.
+-   `WOLF` &ndash; wilk.
 
--   `WOLFESS` -- wilczyca.
+-   `WOLFESS` &ndash; wilczyca.
 
--   `HEDGE` -- żywopłot.
+-   `HEDGE` &ndash; żywopłot.
 
 ## Board
 
@@ -211,120 +211,120 @@ Klasa reprezentująca planszę gry, zarządzająca siatką pól i postaci na
 niej umieszczonych.\
 Prywatne pola:
 
--   `const int MAX_CHARACTERS_PER_FIELD` -- maksymalna liczba postaci na
+-   `const int MAX_CHARACTERS_PER_FIELD` &ndash; maksymalna liczba postaci na
     jednym polu planszy.
 
--   `const int fieldNumber` -- liczba pól na planszy w jednej osi (N).
+-   `const int fieldNumber` &ndash; liczba pól na planszy w jednej osi (N).
 
 Prywatne metody:
 
--   `bool checkOutOfBounds(Position pos)` -- metoda sprawdzająca, czy
+-   `bool checkOutOfBounds(Position pos)` &ndash; metoda sprawdzająca, czy
     podana pozycja jest poza granicami planszy. `pos` to pozycja do
     sprawdzenia. Zwraca true jeśli pozycja jest poza granicami, w
     przeciwnym razie false.
 
 Publiczne pola:
 
--   `const float breedFatThreshold` -- próg tłuszczu potrzebny do
+-   `const float breedFatThreshold` &ndash; próg tłuszczu potrzebny do
     rozmnożenia się wilka/wilczycy.
 
--   `std::vector<GameCharacter*> gameCharacterList` -- lista wszystkich
+-   `std::vector<GameCharacter*> gameCharacterList` &ndash; lista wszystkich
     postaci na planszy.
 
--   `std::vector<GameCharacter*> deadCharacters` -- lista postaci, które
+-   `std::vector<GameCharacter*> deadCharacters` &ndash; lista postaci, które
     zginęły w bieżącym kroku symulacji.
 
--   `std::vector<GameCharacter*> newCharacters` -- lista nowo dodanych
+-   `std::vector<GameCharacter*> newCharacters` &ndash; lista nowo dodanych
     postaci w bieżącym kroku symulacji.
 
--   `std::vector<Animation*> animationList` -- lista animacji na
+-   `std::vector<Animation*> animationList` &ndash; lista animacji na
     planszy.
 
 Publiczne metody:
 
--   `Board(int size)` -- konstruktor klasy Board. `size` to rozmiar
+-   `Board(int size)` &ndash; konstruktor klasy Board. `size` to rozmiar
     planszy.
 
--   `int getFieldNumber()` -- metoda zwracająca wartość pola
+-   `int getFieldNumber()` &ndash; metoda zwracająca wartość pola
     `fieldNumber`.
 
--   `int getCharacterCount(CharacterType type)` -- metoda zliczająca
+-   `int getCharacterCount(CharacterType type)` &ndash; metoda zliczająca
     liczbę postaci określonego typu na planszy. `type` to typ postaci do
     zliczenia. Zwraca liczbę postaci danego typu na planszy.
 
--   `void addCharacter(Position pos, CharacterType type)` -- metoda
+-   `void addCharacter(Position pos, CharacterType type)` &ndash; metoda
     dodająca postać określonego typu na podane pole planszy. `pos` to
     pozycja pola, `type` to typ postaci do dodania.
 
--   `void removeCharacter(GameCharacter* character)` -- metoda usuwająca
+-   `void removeCharacter(GameCharacter* character)` &ndash; metoda usuwająca
     podaną postać z listy postaci na planszy. `character` to wskaźnik na
     postać do usunięcia.
 
--   `int countCharactersOnField(Position pos)` -- metoda zliczająca
+-   `int countCharactersOnField(Position pos)` &ndash; metoda zliczająca
     liczbę postaci na podanym polu planszy. `pos` to pozycja pola do
     sprawdzenia. Zwraca liczbę postaci na polu.
 
--   `int countCharactersOnField(Position pos, CharacterType type)` --
+-   `int countCharactersOnField(Position pos, CharacterType type)` &ndash;
     metoda zliczająca liczbę postaci określonego typu na podanym polu
     planszy. `pos` to pozycja pola do sprawdzenia, `type` to typ postaci
     do zliczenia. Zwraca liczbę postaci danego typu na polu.
 
--   `bool canMove(GameCharacter* character)` -- metoda sprawdzająca, czy
+-   `bool canMove(GameCharacter* character)` &ndash; metoda sprawdzająca, czy
     podana postać ma możliwość ruchu. `character` to wskaźnik na postać
     do sprawdzenia. Zwraca true jeśli postać może się poruszyć, w
     przeciwnym razie false.
 
--   `bool canMoveTo(Position pos, bool isWolf = false)` -- metoda
+-   `bool canMoveTo(Position pos, bool isWolf = false)` &ndash; metoda
     sprawdzająca, czy można się poruszyć na podane pole planszy. `pos`
     to pozycja pola do sprawdzenia, `isWolf` to flaga określająca, czy
     postać jest wilkiem/wilczycą (domyślnie false). Zwraca true jeśli
     można się poruszyć na pole, w przeciwnym razie false.
 
--   `sf::Vector2i randomMove(GameCharacter* character)` -- metoda
+-   `sf::Vector2i randomMove(GameCharacter* character)` &ndash; metoda
     generująca losowe przesunięcie dla podanej postaci. `character` to
     wskaźnik na postać do wygenerowania ruchu. Zwraca wektor
     przesunięcia w osi x i y.
 
--   `GameCharacter* getCharacterAt(Position pos)` -- metoda zwracająca
+-   `GameCharacter* getCharacterAt(Position pos)` &ndash; metoda zwracająca
     wskaźnik na pierwszą postać na podanym polu planszy. `pos` to
     pozycja pola. Zwraca wskaźnik na postać lub nullptr jeśli nie
     znaleziono.
 
--   `GameCharacter* getCharacterAt(Position pos, CharacterType type)` --
+-   `GameCharacter* getCharacterAt(Position pos, CharacterType type)` &ndash;
     metoda zwracająca wskaźnik na pierwszą postać określonego typu na
     podanym polu planszy. `pos` to pozycja pola, `type` to typ postaci
     do znalezienia. Zwraca wskaźnik na postać lub nullptr jeśli nie
     znaleziono.
 
--   `bool canWolfEatAt(Position pos)` -- metoda sprawdzająca, czy
+-   `bool canWolfEatAt(Position pos)` &ndash; metoda sprawdzająca, czy
     wilk/wilczyca może zjeść królika na podanym polu planszy. `pos` to
     pozycja pola do sprawdzenia. Zwraca true jeśli wilk/wilczyca może
     zjeść królika, w przeciwnym razie false.
 
 -   `GameCharacter* getClosestCharacter(Position pos, CharacterType type)`
-    -- metoda zwracająca wskaźnik na najbliższą postać określonego typu
+    &ndash; metoda zwracająca wskaźnik na najbliższą postać określonego typu
     względem podanej pozycji. `pos` to pozycja odniesienia, `type` to
     typ postaci do znalezienia. Zwraca wskaźnik na najbliższą postać lub
     nullptr jeśli nie znaleziono.
 
--   `bool wolfBreedPossible(Position pos)` -- metoda sprawdzająca, czy
+-   `bool wolfBreedPossible(Position pos)` &ndash; metoda sprawdzająca, czy
     na podanym polu planszy możliwe jest rozmnożenie się wilka/wilczycy.
     `pos` to pozycja pola do sprawdzenia. Zwraca true jeśli rozmnożenie
     jest możliwe, w przeciwnym razie false.
 
--   `bool rabbitBreedPossible(Position pos)` -- metoda sprawdzająca, czy
+-   `bool rabbitBreedPossible(Position pos)` &ndash; metoda sprawdzająca, czy
     na podanym polu planszy możliwe jest rozmnożenie się królika. `pos`
     to pozycja pola do sprawdzenia. Zwraca true jeśli rozmnożenie jest
     możliwe, w przeciwnym razie false.
 
--   `void applyDeathsAndBirths()` -- metoda aktualizująca listę postaci
+-   `void applyDeathsAndBirths()` &ndash; metoda aktualizująca listę postaci
     na planszy, usuwając martwe postacie i dodając nowo narodzone.
 
--   `void updateAnimations()` -- metoda aktualizująca stan wszystkich
+-   `void updateAnimations()` &ndash; metoda aktualizująca stan wszystkich
     animacji na planszy i usuwa zakończone animacje.
 
 -   `void drawAnimations(sf::RenderWindow* window, unsigned int screenSize, unsigned int fieldNumber)`
-    -- metoda rysująca wszystkie animacje na podanym oknie SFML.
+    &ndash; metoda rysująca wszystkie animacje na podanym oknie SFML.
     `window` to wskaźnik na okno SFML, `screenSize` to rozmiar planszy w
     pikselach, `fieldNumber` to ilość pól na planszy w jednej osi (N).
 
@@ -334,24 +334,24 @@ Klasa bazowa dla wszystkich postaci w grze, zawierająca wspólne
 właściwości i metody.\
 Publiczne pola:
 
--   `Position pos` -- pozycja postaci na planszy.
+-   `Position pos` &ndash; pozycja postaci na planszy.
 
--   `CharacterType type` -- typ postaci
+-   `CharacterType type` &ndash; typ postaci
 
--   `int slots` -- liczba zajętych slotów na polu planszy przez tę
+-   `int slots` &ndash; liczba zajętych slotów na polu planszy przez tę
     postać.
 
 Publiczne metody:
 
--   `GameCharacter(Position pos)` -- konstruktor klasy. `pos` to pozycja
+-   `GameCharacter(Position pos)` &ndash; konstruktor klasy. `pos` to pozycja
     postaci na planszy.
 
--   `virtual void Move(int deltaX, int deltaY)` -- metoda wirtualna do
+-   `virtual void Move(int deltaX, int deltaY)` &ndash; metoda wirtualna do
     poruszania postaci o podane przesunięcie w osi x i y. `deltaX` to
     przesunięcie w osi x, `deltaY` to przesunięcie w osi y.
 
 -   `virtual void Draw(sf::RenderWindow* window, sf::Texture& texture, unsigned int screenSize, unsigned int fieldNumber, int p = 0)`
-    -- metoda wirtualna do rysowania postaci na podanym oknie SFML.
+    &ndash; metoda wirtualna do rysowania postaci na podanym oknie SFML.
     `window` to wskaźnik na okno SFML, `texture` to referencja do
     tekstury postaci, `screenSize` to rozmiar planszy w pikselach,
     `fieldNumber` to ilość pól na planszy w jednej osi (N), `p` to
@@ -362,10 +362,10 @@ Publiczne metody:
 Klasa reprezentująca królika, dziedzicząca po klasie GameCharacter.\
 Publiczne metody:
 
--   `Rabbit(Position pos)` -- konstruktor klasy. `pos` to pozycja
+-   `Rabbit(Position pos)` &ndash; konstruktor klasy. `pos` to pozycja
     królika na planszy.
 
--   `static sf::Texture* GetTexture(class Game* game)` -- metoda
+-   `static sf::Texture* GetTexture(class Game* game)` &ndash; metoda
     statyczna zwracająca wskaźnik na teksturę królika z klasy Game.
     `game` to wskaźnik na instancję klasy Game.
 
@@ -375,17 +375,17 @@ Klasa reprezentująca wilka lub wilczycę, dziedzicząca po klasie
 GameCharacter.\
 Publiczne pola:
 
--   `double fat` -- ilość tłuszczu posiadanego przez wilka/wilczycę.
+-   `double fat` &ndash; ilość tłuszczu posiadanego przez wilka/wilczycę.
 
 Publiczne metody:
 
--   `Wolf(Position pos)` -- konstruktor klasy. `pos` to pozycja
+-   `Wolf(Position pos)` &ndash; konstruktor klasy. `pos` to pozycja
     wilka/wilczycy na planszy.
 
--   `Wolf(Position pos, CharacterType type)` -- konstruktor klasy. `pos`
+-   `Wolf(Position pos, CharacterType type)` &ndash; konstruktor klasy. `pos`
     to pozycja wilka/wilczycy na planszy, `type` to typ postaci.
 
--   `static sf::Texture* GetTexture(class Game* game)` -- metoda
+-   `static sf::Texture* GetTexture(class Game* game)` &ndash; metoda
     statyczna zwracająca wskaźnik na teksturę wilka z klasy Game. `game`
     to wskaźnik na instancję klasy Game.
 
@@ -394,10 +394,10 @@ Publiczne metody:
 Klasa reprezentująca żywopłot, dziedzicząca po klasie GameCharacter.\
 Publiczne metody:
 
--   `Hedge(Position pos)` -- konstruktor klasy. `pos` to pozycja
+-   `Hedge(Position pos)` &ndash; konstruktor klasy. `pos` to pozycja
     żywopłotu na planszy.
 
--   `static sf::Texture* GetTexture(class Game* game)` -- metoda
+-   `static sf::Texture* GetTexture(class Game* game)` &ndash; metoda
     statyczna zwracająca wskaźnik na teksturę żywopłotu z klasy Game.
     `game` to wskaźnik na instancję klasy Game.
 
@@ -406,34 +406,34 @@ Publiczne metody:
 Klasa reprezentująca stan animacji na planszy.\
 Prywatne pola:
 
--   `float alpha` -- przezroczystość animacji
+-   `float alpha` &ndash; przezroczystość animacji
 
--   `float offsetY` -- przesunięcie animacji w osi Y
+-   `float offsetY` &ndash; przesunięcie animacji w osi Y
 
--   `int lifetime` -- pozostały czas życia animacji w klatkach
+-   `int lifetime` &ndash; pozostały czas życia animacji w klatkach
 
--   `const int maxLifetime` -- maksymalny czas życia animacji w klatkach
+-   `const int maxLifetime` &ndash; maksymalny czas życia animacji w klatkach
 
--   `sf::Texture& texture` -- referencja do tekstury animacji
+-   `sf::Texture& texture` &ndash; referencja do tekstury animacji
 
 Publiczne pola:
 
--   `Position position` -- pozycja animacji na planszy
+-   `Position position` &ndash; pozycja animacji na planszy
 
 Publiczne metody:
 
--   `Animation(Position pos, sf::Texture& texture)` -- konstruktor
+-   `Animation(Position pos, sf::Texture& texture)` &ndash; konstruktor
     klasy. `pos` to pozycja animacji na planszy, `texture` to referencja
     do tekstury animacji.
 
--   `void update()` -- metoda aktualizująca stan animacji
+-   `void update()` &ndash; metoda aktualizująca stan animacji
     (przezroczystość, przesunięcie, czas życia).
 
 -   `void draw(sf::RenderWindow* window, unsigned int screenSize, unsigned int fieldNumber)`
-    -- metoda rysująca animację na podanym oknie SFML. `window` to
+    &ndash; metoda rysująca animację na podanym oknie SFML. `window` to
     wskaźnik na okno SFML, `screenSize` to rozmiar planszy w pikselach,
     `fieldNumber` to ilość pól na planszy w jednej osi (N).
 
--   `bool isFinished()` -- metoda sprawdzająca, czy animacja zakończyła
+-   `bool isFinished()` &ndash; metoda sprawdzająca, czy animacja zakończyła
     się. Zwraca true jeśli animacja zakończyła się, w przeciwnym razie
     false.
