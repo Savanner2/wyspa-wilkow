@@ -10,11 +10,23 @@ class Board
 {
 	const int MAX_CHARACTERS_PER_FIELD = 3;
 	const int fieldNumber;	// size of the board
+	
+	// Check if position is out of bounds
+	bool checkOutOfBounds(Position pos) const;
+
+	// Count all characters on a field
+	int countCharactersOnField(Position pos) const;
+
+	// Count specific character type on a field
+	int countCharactersOnField(Position pos, CharacterType type) const;
+
 public:
 	const float breedFatThreshold = 1.f;	// fat threshold for wolf breeding
 	std::vector<GameCharacter*> gameCharacterList;	// main list of characters on the board
 	std::vector<GameCharacter*> deadCharacters, newCharacters;	// lists for deaths and births
 	std::vector<Animation*> animationList;	// list of active animations
+	
+	// constructor
 	Board(int size);
 
 	// fieldNumber getter
@@ -22,9 +34,6 @@ public:
 
 	// Get total character count of specific type
 	int getCharacterCount(CharacterType type) const;
-
-	// Check if position is out of bounds
-	bool checkOutOfBounds(Position pos) const;
 
 	// Add new character to the board
 	void addCharacter(Position pos, CharacterType type);
@@ -41,12 +50,6 @@ public:
 	// Generate random move
 	sf::Vector2i randomMove(GameCharacter* character) const;
 
-	// Count all characters on a field
-	int countCharactersOnField(Position pos) const;
-
-	// Count specific character type on a field
-	int countCharactersOnField(Position pos, CharacterType type) const;
-
 	// Get first character of specific type at a position
 	GameCharacter* getCharacterAt(Position pos, CharacterType type) const;
 
@@ -54,7 +57,7 @@ public:
 	GameCharacter* getCharacterAt(Position pos) const;
 
 	// Check if wolf can eat rabbit at position
-	bool feastTime(Position pos) const;
+	bool canWolfEatAt(Position pos) const;
 
 	// Get closest character of specific type
 	GameCharacter* getClosestCharacter(Position pos, CharacterType type) const;
@@ -73,6 +76,5 @@ public:
 
 	// Draw all active animations
 	void drawAnimations(sf::RenderWindow* window, unsigned int screenSize, unsigned int fieldNumber) const;
-
 };
 

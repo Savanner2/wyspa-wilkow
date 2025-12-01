@@ -162,7 +162,7 @@ GameCharacter* Board::getCharacterAt(Position pos) const
 	return nullptr;
 }
 
-bool Board::feastTime(Position pos) const
+bool Board::canWolfEatAt(Position pos) const
 {
 	return (Board::getCharacterAt(pos, CharacterType::RABBIT) != nullptr && Board::getCharacterAt(pos, CharacterType::WOLF) != nullptr) ||
 		(Board::getCharacterAt(pos, CharacterType::RABBIT) != nullptr && Board::getCharacterAt(pos, CharacterType::WOLFESS) != nullptr);

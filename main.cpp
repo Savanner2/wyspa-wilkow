@@ -118,7 +118,7 @@ int main()
                     }
 
                     // wolf eating logic
-                    if (game.board.feastTime(character->pos)) {
+                    if (game.board.canWolfEatAt(character->pos)) {
                         Rabbit* rabbit = dynamic_cast<Rabbit*>(game.board.getCharacterAt(character->pos, CharacterType::RABBIT));
 
                         if (std::find(game.board.deadCharacters.begin(), game.board.deadCharacters.end(), rabbit) == game.board.deadCharacters.end()) {
