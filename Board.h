@@ -14,12 +14,6 @@ class Board
 	// Check if position is out of bounds
 	bool checkOutOfBounds(Position pos) const;
 
-	// Count all characters on a field
-	int countCharactersOnField(Position pos) const;
-
-	// Count specific character type on a field
-	int countCharactersOnField(Position pos, CharacterType type) const;
-
 public:
 	const float breedFatThreshold = 1.f;	// fat threshold for wolf breeding
 	std::vector<GameCharacter*> gameCharacterList;	// main list of characters on the board
@@ -40,6 +34,12 @@ public:
 
 	// Remove character from list
 	void removeCharacter(GameCharacter* character);
+
+	// Count all characters on a field
+	int countCharactersOnField(Position pos) const;
+
+	// Count specific character type on a field
+	int countCharactersOnField(Position pos, CharacterType type) const;
 
 	// Check if character can move at all
 	bool canMove(GameCharacter* character) const;
