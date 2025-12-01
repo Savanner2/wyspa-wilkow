@@ -8,9 +8,9 @@ class Game
 	const unsigned int boardSize;	// size of the board
 	const unsigned int screenSize;	// size of the board in pixels
 	float lineThickness = 2.f;	// thickness of grid lines
-	sf::Font fontGoogleSans;	// main font
+	sf::Font fontMain;	// main font
 	sf::Font fontEmoji;			// emoji font
-	std::vector<uint8_t> fontGoogleSansBuffer;	// buffer for loading main font from resources
+	std::vector<uint8_t> fontMainBuffer;	// buffer for loading main font from resources
 	std::vector<uint8_t> fontEmojiBuffer;	// buffer for loading emoji font from resources
 	sf::RectangleShape clearAllButton; // clear all button
 
@@ -36,14 +36,14 @@ public:
 	sf::Texture wolfBreedTexture;
 	sf::Texture hedgeTexture;
 
-
+	// constructor
 	Game(unsigned int boardSize, unsigned int screenSize);
 	// load textures from resources
 	bool loadTextures();
 	// draw grid
-	void drawGrid(sf::RenderWindow* window, int screenSize, int fieldNumber) const;
+	void drawGrid(sf::RenderWindow* window) const;
 	// draw background
-	void drawBackground(sf::RenderWindow* window, int screenSize, int fieldNumber) const;
+	void drawBackground(sf::RenderWindow* window) const;
 	// draw controls and info
 	void drawControls(sf::RenderWindow* window);
 	// draw characters

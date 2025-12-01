@@ -21,10 +21,10 @@
 Game::Game(unsigned int boardSize, unsigned int screenSize)
     : board(boardSize), screenSize(screenSize), boardSize(boardSize) {
 
-	fontGoogleSansBuffer = loadResource(IDR_RCDATA1, MAKEINTRESOURCEW(RT_RCDATA));
-    if (fontGoogleSansBuffer.empty()) {
+	fontMainBuffer = loadResource(IDR_RCDATA1, MAKEINTRESOURCEW(RT_RCDATA));
+    if (fontMainBuffer.empty()) {
         std::cerr << "Font resource for GoogleSansCode not found.\n";
-    } else if (!fontGoogleSans.openFromMemory(fontGoogleSansBuffer.data(), fontGoogleSansBuffer.size())) {
+    } else if (!fontMain.openFromMemory(fontMainBuffer.data(), fontMainBuffer.size())) {
         std::cerr << "Failed to open GoogleSansCode from memory.\n";
     }
 
@@ -41,12 +41,12 @@ Game::Game(unsigned int boardSize, unsigned int screenSize)
 };
 
 
-void Game::drawGrid(sf::RenderWindow* window, int screenSize, int fieldNumber) const {
+void Game::drawGrid(sf::RenderWindow* window) const {
     float thickness = lineThickness;
-    float cellSize = (screenSize - (thickness * (fieldNumber - 1))) / fieldNumber;
+    float cellSize = (screenSize - (thickness * (boardSize - 1))) / boardSize;
     sf::Color lineColor = sf::Color::White;
 
-    for (int i = 0; i <= fieldNumber; i++) {
+    for (int i = 0; i <= boardSize; i++) {
         float lineStart = i == 0 ? 0 : i * cellSize + (i - 1) * thickness;
         for (float j = 0.f; j < thickness; j++) {
             // draw horizontal lines
@@ -70,7 +70,7 @@ void Game::drawGrid(sf::RenderWindow* window, int screenSize, int fieldNumber) c
     }
 }
 
-void Game::drawBackground(sf::RenderWindow* window, int screenSize, int fieldNumber) const {
+void Game::drawBackground(sf::RenderWindow* window) const {
     sf::Sprite sprite(backgroundTexture);
     sf::Vector2f targetSize((float)screenSize, (float)screenSize);
 
@@ -99,7 +99,7 @@ void Game::drawControls(sf::RenderWindow* window)
     clearAllButton.setPosition({ (float)screenSize + 100, (float)(650) });
 	window->draw(clearAllButton);
 
-	sf::Text clearAllText(fontGoogleSans);
+	sf::Text clearAllText(fontMain);
 	clearAllText.setString("Clear All");
 	clearAllText.setCharacterSize(28);
 	clearAllText.setFillColor(sf::Color::Black);
@@ -170,7 +170,7 @@ void Game::drawCharacters(sf::RenderWindow* window) const
 
 sf::Text Game::speedText() const
 {
-    sf::Text speedText(fontGoogleSans);
+    sf::Text speedText(fontMain);
     std::stringstream ss;
     ss << std::fixed << std::setprecision(2) << (60.f / speed);
 
@@ -184,7 +184,7 @@ sf::Text Game::speedText() const
 
 sf::Text Game::statusText() const
 {
-    sf::Text statusText(fontGoogleSans);
+    sf::Text statusText(fontMain);
 
     statusText.setString("Characters:\nRABBIT: " + std::to_string(board.getCharacterCount(CharacterType::RABBIT)) + "\n" +
 		"WOLF: " + std::to_string(board.getCharacterCount(CharacterType::WOLF)) + "\n" +
@@ -206,7 +206,7 @@ sf::Text Game::boardEditText() const
     sf::String wolfessStr = characterSelected == 3 ? sf::String(U"\t") + arrow + U"WOLFESS\n" : sf::String(U"WOLFESS\n");
     sf::String hedgeStr = characterSelected == 0 ? sf::String(U"\t") + arrow + U"HEDGE\n" : sf::String(U"HEDGE\n");
 
-    sf::Text boardEditText(fontGoogleSans);
+    sf::Text boardEditText(fontMain);
     boardEditText.setString(sf::String(U"Add characters:\n") + rabbitStr + wolfStr + wolfessStr + hedgeStr + sf::String(U"\nChange with UP/DOWN\n\nLeft click on the board to add\nselected character.\nRight click to clear a field."));
     boardEditText.setCharacterSize(20);
     boardEditText.setFillColor(sf::Color::Blue);
