@@ -2,7 +2,7 @@
 #include "Animation.h"
 #include <iostream>
 
-Animation::Animation(sf::Vector2f pos, sf::Texture& texture)
+Animation::Animation(Position pos, sf::Texture& texture)
     : position(pos), lifetime(120), maxLifetime(lifetime), texture(texture), alpha(255.f), offsetY(0.f) {
 }
 

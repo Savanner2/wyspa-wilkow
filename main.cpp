@@ -40,7 +40,7 @@ int main()
             if (event->is<sf::Event::Closed>())
                 window.close();
 
-            // handle key presses
+			// handle input events
             game.handleEvents(&window, &event);
         }
 
@@ -67,12 +67,7 @@ int main()
                     Wolf* wolf = dynamic_cast<Wolf*>(character);
                     if (wolf->fat <= 0) {
 						game.board.deadCharacters.push_back(character);
-                        game.board.animationList.push_back(new Animation(
-                            sf::Vector2f(
-                                character->pos.x,
-                                character->pos.y
-                            ),
-                            game.deathTexture));
+                        game.board.animationList.push_back(new Animation(character->pos,game.deathTexture));
                         std::cout << "A wolf has died at " << "(" << wolf->pos.x << ", " << wolf->pos.y << ")" << std::endl;
 						continue;
                     } 
@@ -80,12 +75,7 @@ int main()
                     // wolf breeding logic
                     if (game.board.wolfBreedPossible(character->pos) && !hasActed) {
 						game.board.newCharacters.push_back(new Wolf(Position(character->pos.x, character->pos.y)));
-						game.board.animationList.push_back(new Animation(
-							sf::Vector2f(
-								character->pos.x,
-								character->pos.y
-							),
-							game.wolfBreedTexture));
+						game.board.animationList.push_back(new Animation(character->pos, game.wolfBreedTexture));
 						std::cout << "A wolf has bred at (" << character->pos.x << ", " << character->pos.y << ")" << std::endl;
 						hasActed = true;
                     }
@@ -96,7 +86,6 @@ int main()
 						int deltaX = move.x;
 						int deltaY = move.y;
 
-						Wolf* wolf = dynamic_cast<Wolf*>(character);
 						// check if wolf has enough fat to breed
                         if (wolf->fat >= game.board.breedFatThreshold && character->type == CharacterType::WOLF) {
                             Wolf* wolfess = dynamic_cast<Wolf*>(game.board.getClosestCharacter(character->pos, CharacterType::WOLFESS));
@@ -130,20 +119,11 @@ int main()
 
                     // wolf eating logic
                     if (game.board.feastTime(character->pos)) {
-                        Wolf* wolf = dynamic_cast<Wolf*>(game.board.getCharacterAt(character->pos, CharacterType::WOLF));
-                        if (wolf == nullptr) {
-                            wolf = dynamic_cast<Wolf*>(game.board.getCharacterAt(character->pos, CharacterType::WOLFESS));
-                        }
                         Rabbit* rabbit = dynamic_cast<Rabbit*>(game.board.getCharacterAt(character->pos, CharacterType::RABBIT));
 
                         if (std::find(game.board.deadCharacters.begin(), game.board.deadCharacters.end(), rabbit) == game.board.deadCharacters.end()) {
                             game.board.deadCharacters.push_back(rabbit);
-                            game.board.animationList.push_back(new Animation(
-                                sf::Vector2f(
-                                    character->pos.x,
-                                    character->pos.y
-                                ),
-                                game.eatTexture));
+                            game.board.animationList.push_back(new Animation(wolf->pos, game.eatTexture));
                             wolf->fat += 1;
                             std::cout << "A wolf has eaten a rabbit at " << "(" << wolf->pos.x << ", " << wolf->pos.y << ")" << std::endl;
                         }
@@ -158,12 +138,7 @@ int main()
                         // breeding logic
                         if (breed && game.board.rabbitBreedPossible(Position(character->pos.x, character->pos.y))) {
 							game.board.newCharacters.push_back(new Rabbit(Position(character->pos.x, character->pos.y)));
-							game.board.animationList.push_back(new Animation(
-								sf::Vector2f(
-									character->pos.x,
-									character->pos.y
-								),
-								game.rabbitBreedTexture));
+							game.board.animationList.push_back(new Animation(character->pos, game.rabbitBreedTexture));
 							std::cout << "A rabbit has bred at (" << character->pos.x << ", " << character->pos.y << ")" << std::endl;
 							
                         }
@@ -193,10 +168,10 @@ int main()
         window.clear();
 
 		// draw board background
-        game.drawBackground(&window, screenSize, boardSize);
+        game.drawBackground(&window);
 		
         // draw board grid
-        game.drawGrid(&window, screenSize, boardSize);
+        game.drawGrid(&window);
 		
         // draw characters
         game.drawCharacters(&window);
