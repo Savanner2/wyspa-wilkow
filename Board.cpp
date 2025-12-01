@@ -25,7 +25,7 @@ int Board::getCharacterCount(CharacterType type) const
 	int count = 0;
 	for (const GameCharacter* character : gameCharacterList) {
 		if (character->type == type)
-			count += character->slots;
+			count++;
 	}
 	return count;
 }
